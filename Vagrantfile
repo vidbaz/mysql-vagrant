@@ -4,11 +4,19 @@
 # Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
 VAGRANTFILE_API_VERSION = "2"
 
+#VM settings
+MYSQL_IP = "172.28.128.10"
+MYSQL_MEMORY_MB  = "6144" #6g
+
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  config.vm.box = "precise64"
-  config.vm.box_url = "http://files.vagrantup.com/precise64.box"
-  config.vm.network :forwarded_port, guest: 3306, host: 3306
-  config.vm.provision :shell, :path => "install.sh"
-  config.vm.synced_folder ".", "/vagrant", :mount_options => ["dmode=777", "fmode=666"]
-  config.vm.network "private_network", ip: "33.33.33.10"
+  config.vm.box = "ubuntu/focal64"  # https://app.vagrantup.com/ubuntu/
+  config.vm.define "mysql" do |mysql|
+    mysql.vm.provider "virtualbox" do |vb|
+      vb.memory = MYSQL_MEMORY_MB
+    end
+    mysql.vm.network :forwarded_port, guest: 3306, host: 3306
+    mysql.vm.provision :shell, :path => "install.sh"
+    mysql.vm.synced_folder ".", "/vagrant", :mount_options => ["dmode=777", "fmode=666"]
+    mysql.vm.network "private_network", ip: MYSQL_IP
+  end
 end
