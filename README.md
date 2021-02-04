@@ -1,6 +1,10 @@
-# mysql-vagrant
+# mysql-8-vagrant
 
-mysql-vagrant is a quick way to run mysql locally for development without an ssh tunnel
+mysql-vagrant is a quick way to run mysql 8 locally for development without an ssh tunnel
+
+### Vagrantfile variables
+``MYSQL_IP # Define private IP``
+``MYSQL_MEMORY_MB # Define VM Memory RAM``
 
 ### Start server
 
@@ -8,13 +12,15 @@ mysql-vagrant is a quick way to run mysql locally for development without an ssh
 
 ### Connect to mysql:
 
-- host: 33.33.33.1
+- host: 172.28.128.14
 - username: root
 - password: root
 
-### From sequel pro
+MYSQL_IP = "172.28.128.14"
 
-<img src="sequel-pro.png"/>
+### From MySQL Workbench 8.0 CE
+
+<img src="connection-string.jpg"/>
 
 ### Warning
 
