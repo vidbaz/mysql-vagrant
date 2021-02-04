@@ -1,4 +1,4 @@
-# mysql-8-vagrant
+# mysql8-vagrant
 
 mysql-vagrant is a quick way to run mysql 8 locally for development without an ssh tunnel
 
